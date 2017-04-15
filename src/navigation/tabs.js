@@ -45,7 +45,7 @@ const scenes = (
       {...navbarPropsTabs}
       key={'recipes'}
       title={'Recipes'}
-      icon={props => TabIcon({ ...props, icon: 'search' })}
+      icon={props => TabIcon({ ...props, icon: 'speaker-notes' })}
     >
       <Scene
         {...navbarPropsTabs}
@@ -68,7 +68,7 @@ const scenes = (
       {...navbarPropsTabs}
       title={'Coming Soon'}
       component={Placeholder}
-      icon={props => TabIcon({ ...props, icon: 'timeline' })}
+      icon={props => TabIcon({ ...props, icon: 'search' })}
       analyticsDesc={'Placeholder: Coming Soon'}
     />
 
@@ -77,18 +77,10 @@ const scenes = (
       {...navbarPropsTabs}
       title={'Library Map'}
       component={MapComponent}
-      icon={props => TabIcon({ ...props, icon: 'error' })}
+      icon={props => TabIcon({ ...props, icon: 'timeline' })}
       analyticsDesc={'Error: Example Error'}
     />
 
-    <Scene
-      key={'styleGuide'}
-      {...navbarPropsTabs}
-      title={'Style Guide'}
-      component={StyleGuide}
-      icon={props => TabIcon({ ...props, icon: 'speaker-notes' })}
-      analyticsDesc={'StyleGuide: Style Guide'}
-    />
   </Scene>
 );
 
