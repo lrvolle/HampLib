@@ -59,8 +59,8 @@ class MapComponent extends Component {
       }}
       style={styles.map}
       initialCenterCoordinate={{
-          latitude: 42.325400,
-          longitude: -72.532125
+          latitude: 42.325490,
+          longitude: -72.532325
       }}
       initialZoomLevel={18}
       initialDirection={0}
