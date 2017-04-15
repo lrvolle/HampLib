@@ -46219,11 +46219,11 @@ var _navigation = require(503           ); // 503 = @navigation/
 
 var _navigation2 = babelHelpers.interopRequireDefault(_navigation);
 
-var _analytics = require(780             ); // 780 = @lib/analytics
+var _analytics = require(786             ); // 786 = @lib/analytics
 
 var _analytics2 = babelHelpers.interopRequireDefault(_analytics);
 
-var _index = require(787           ); // 787 = @redux/index
+var _index = require(793           ); // 793 = @redux/index
 
 var _index2 = babelHelpers.interopRequireDefault(_index);
 
@@ -54479,6 +54479,13 @@ var _tabs = require(756     ); // 756 = ./tabs
 
 var _tabs2 = babelHelpers.interopRequireDefault(_tabs);
 
+var _reactNativeMapboxGl = require(759                     ); // 759 = react-native-mapbox-gl
+
+var _reactNativeMapboxGl2 = babelHelpers.interopRequireDefault(_reactNativeMapboxGl);
+
+var accessToken = 'pk.eyJ1IjoibHJ2b2xsZSIsImEiOiJjajFpcndxN2swMWJ0MnFvaG1uaWNlOHVkIn0.ptRQFGDH9slee6PowWtXOg';
+_reactNativeMapboxGl2.default.setAccessToken(accessToken);
+
 exports.default = _reactNativeRouterFlux.Actions.create(_react2.default.createElement(
   _reactNativeRouterFlux.Scene,
   babelHelpers.extends({ key: 'root' }, _constants.AppConfig.navbarProps),
@@ -54506,9 +54513,9 @@ exports.default = _reactNativeRouterFlux.Actions.create(_react2.default.createEl
     _react2.default.createElement(_reactNativeRouterFlux.Scene, babelHelpers.extends({}, _constants.AppConfig.navbarProps, {
       key: 'webView',
       title: '',
-      url: 'x',
       clone: true,
-      component: _WebView2.default
+      component: _WebView2.default,
+      url: ''
     }))
   )
 ));
@@ -54541,7 +54548,8 @@ __d(/* @constants/config.js */function(global, require, module, exports) {Object
 var _theme = require(498      ); // 498 = @theme/
 
 exports.default = {
-  appName: 'HampLib',
+  appName: 'Services',
+  mapName: 'HampLib',
 
   DEV: __DEV__,
 
@@ -56691,55 +56699,21 @@ var Menu = function (_Component) {
             { style: [styles.menu] },
             menuItems
           ),
-          _react2.default.createElement(
-            _reactNative.View,
-            { style: [styles.menuBottom] },
-            _this.props.user && _this.props.user.name ? _react2.default.createElement(
-              _reactNative.View,
-              null,
-              _react2.default.createElement(
-                _ui.Text,
-                {
-                  style: [styles.menuBottom_text, _theme.AppStyles.textCenterAligned]
-                },
-                'Logged in as:',
-                '\n',
-                _this.props.user.name
-              ),
-              _react2.default.createElement(_ui.Spacer, { size: 10 }),
-              _react2.default.createElement(
-                _reactNative.View,
-                { style: [_theme.AppStyles.paddingHorizontal, _theme.AppStyles.paddingVerticalSml] },
-                _react2.default.createElement(_ui.Button, {
-                  small: true,
-                  title: 'Log Out',
-                  onPress: _this.logout
-                })
-              )
-            ) : _react2.default.createElement(
-              _reactNative.View,
-              { style: [_theme.AppStyles.paddingHorizontal, _theme.AppStyles.paddingVerticalSml] },
-              _react2.default.createElement(_ui.Button, {
-                small: true,
-                title: 'Log In',
-                onPress: _this.login
-              })
-            )
-          )
+          _react2.default.createElement(_reactNative.View, { style: [styles.menuBottom] })
         )
       );
     };
 
     _this.state = {
       menu: [{
+        title: 'Map',
+        onPress: function onPress() {
+          _this.props.closeSideMenu();_reactNativeRouterFlux.Actions.map();
+        }
+      }, {
         title: 'Services',
         onPress: function onPress() {
           _this.props.closeSideMenu();_reactNativeRouterFlux.Actions.app();
-        }
-      }, {
-        title: 'Example Link',
-        onPress: function onPress() {
-          _this.props.closeSideMenu();_reactNativeRouterFlux.Actions.comingSoon();
         }
       }]
     };
@@ -75109,6 +75083,10 @@ var _ui = require(526   ); // 526 = @ui/
 
 var _NavbarMenuButtonContainer = require(757                                                        ); // 757 = @containers/ui/NavbarMenuButton/NavbarMenuButtonContainer
 
+var _reactNativeMapboxGl = require(759                     ); // 759 = react-native-mapbox-gl
+
+var _MapExample = require(763                     ); // 763 = @components/MapExample
+
 var _Placeholder = require(752                              ); // 752 = @components/general/Placeholder
 
 var _Placeholder2 = babelHelpers.interopRequireDefault(_Placeholder);
@@ -75117,17 +75095,23 @@ var _Error = require(755                        ); // 755 = @components/general/
 
 var _Error2 = babelHelpers.interopRequireDefault(_Error);
 
-var _StyleGuideView = require(759                         ); // 759 = @containers/StyleGuideView
+var _StyleGuideView = require(764                         ); // 764 = @containers/StyleGuideView
 
 var _StyleGuideView2 = babelHelpers.interopRequireDefault(_StyleGuideView);
 
-var _BrowseContainer = require(770                                         ); // 770 = @containers/recipes/Browse/BrowseContainer
+var _BrowseContainer = require(775                                         ); // 775 = @containers/recipes/Browse/BrowseContainer
 
 var _BrowseContainer2 = babelHelpers.interopRequireDefault(_BrowseContainer);
 
-var _RecipeView = require(779                             ); // 779 = @containers/recipes/RecipeView
+var _RecipeView = require(784                             ); // 784 = @containers/recipes/RecipeView
 
 var _RecipeView2 = babelHelpers.interopRequireDefault(_RecipeView);
+
+var _MapComponent = require(785                                 ); // 785 = ../components/general/MapComponent
+
+var _MapComponent2 = babelHelpers.interopRequireDefault(_MapComponent);
+
+console.log("ASDFSD" + _MapExample.MapExample);
 
 var navbarPropsTabs = babelHelpers.extends({}, _constants.AppConfig.navbarProps, {
   renderLeftButton: function renderLeftButton() {
@@ -75178,8 +75162,8 @@ var scenes = _react2.default.createElement(
   _react2.default.createElement(_reactNativeRouterFlux.Scene, babelHelpers.extends({
     key: 'error'
   }, navbarPropsTabs, {
-    title: 'Example Error',
-    component: _Error2.default,
+    title: 'Map',
+    component: _MapComponent2.default,
     icon: function icon(props) {
       return (0, _ui.TabIcon)(babelHelpers.extends({}, props, { icon: 'error' }));
     },
@@ -75251,6 +75235,837 @@ NavbarMenuButton.propTypes = {
 
 exports.default = NavbarMenuButton;
 }, 758, null, "@containers/ui/NavbarMenuButton/NavbarMenuButtonView.js");
+__d(/* react-native-mapbox-gl/index.js */function(global, require, module, exports) {'use strict';
+
+var _react = require(282    ); // 282 = react
+
+var _react2 = babelHelpers.interopRequireDefault(_react);
+
+var _reactNative = require(12            ); // 12 = react-native
+
+var _cloneDeep = require(760               ); // 760 = lodash/cloneDeep
+
+var _cloneDeep2 = babelHelpers.interopRequireDefault(_cloneDeep);
+
+var _clone = require(761           ); // 761 = lodash/clone
+
+var _clone2 = babelHelpers.interopRequireDefault(_clone);
+
+var _isEqual = require(677             ); // 677 = lodash/isEqual
+
+var _isEqual2 = babelHelpers.interopRequireDefault(_isEqual);
+
+var _Annotation = require(762           ); // 762 = ./Annotation
+
+var _Annotation2 = babelHelpers.interopRequireDefault(_Annotation);
+
+var MapboxGLManager = _reactNative.NativeModules.MapboxGLManager;
+var mapStyles = MapboxGLManager.mapStyles,
+    userTrackingMode = MapboxGLManager.userTrackingMode,
+    userLocationVerticalAlignment = MapboxGLManager.userLocationVerticalAlignment,
+    unknownResourceCount = MapboxGLManager.unknownResourceCount;
+
+
+function deprecated(obj, key) {
+  var value = obj[key];
+  var warned = false;
+  Object.defineProperty(obj, key, {
+    get: function get() {
+      if (!warned) {
+        console.warn(key + ' is deprecated');
+        warned = true;
+      }
+      return value;
+    }
+  });
+}
+
+deprecated(mapStyles, 'emerald');
+
+if (_reactNative.Platform.OS === 'android') {
+  var RCTUIManager = _reactNative.NativeModules.UIManager;
+  var commands = RCTUIManager.RCTMapboxGL.Commands;
+
+  var callbackMap = new Map();
+  var nextCallbackId = 0;
+
+  Object.keys(commands).forEach(function (command) {
+    MapboxGLManager[command] = function (handle) {
+      for (var _len = arguments.length, rawArgs = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+        rawArgs[_key - 1] = arguments[_key];
+      }
+
+      var args = rawArgs.map(function (arg) {
+        if (typeof arg === 'function') {
+          callbackMap.set(nextCallbackId, arg);
+          return nextCallbackId++;
+        }
+        return arg;
+      });
+      RCTUIManager.dispatchViewManagerCommand(handle, commands[command], args);
+    };
+  });
+
+  _reactNative.NativeAppEventEmitter.addListener('MapboxAndroidCallback', function (_ref) {
+    var _ref2 = babelHelpers.slicedToArray(_ref, 2),
+        callbackId = _ref2[0],
+        args = _ref2[1];
+
+    var callback = callbackMap.get(callbackId);
+    if (!callback) {
+      throw new Error('Native is calling a callbackId ' + callbackId + ', which is not registered');
+    }
+    callbackMap.delete(callbackId);
+    callback.apply(null, args);
+  });
+}
+
+var _metricsEnabled = MapboxGLManager.metricsEnabled;
+
+function setMetricsEnabled(enabled) {
+  _metricsEnabled = enabled;
+  MapboxGLManager.setMetricsEnabled(enabled);
+}
+
+function getMetricsEnabled() {
+  return _metricsEnabled;
+}
+
+function setAccessToken(token) {
+  MapboxGLManager.setAccessToken(token);
+}
+
+function bindCallbackToPromise(callback, promise) {
+  if (callback) {
+    promise.then(function (value) {
+      callback(null, value);
+    }).catch(function (err) {
+      callback(err);
+    });
+  }
+}
+
+function addOfflinePack(options, callback) {
+  var _options = options;
+
+  if (_reactNative.Platform.OS === 'android') {
+    _options = babelHelpers.extends({}, options, {
+      metadata: JSON.stringify({ v: options.metadata })
+    });
+  }
+  var promise = MapboxGLManager.addOfflinePack(_options);
+  bindCallbackToPromise(callback, promise);
+  return promise;
+}
+
+function getOfflinePacks(callback) {
+  var promise = MapboxGLManager.getOfflinePacks();
+  if (_reactNative.Platform.OS === 'android') {
+    promise = promise.then(function (packs) {
+      packs.forEach(function (progress) {
+        if (progress.metadata) {
+          progress.metadata = JSON.parse(progress.metadata).v;
+        }
+      });
+      return packs;
+    });
+  }
+  bindCallbackToPromise(callback, promise);
+  return promise;
+}
+
+function removeOfflinePack(packName, callback) {
+  var promise = MapboxGLManager.removeOfflinePack(packName);
+  bindCallbackToPromise(callback, promise);
+  return promise;
+}
+
+function setOfflinePackProgressThrottleInterval(milis) {
+  MapboxGLManager.setOfflinePackProgressThrottleInterval(milis);
+}
+
+function addOfflinePackProgressListener(handler) {
+  var _handler = handler;
+  if (_reactNative.Platform.OS === 'android') {
+    _handler = function _handler(progress) {
+      if (progress.metadata) {
+        progress.metadata = JSON.parse(progress.metadata).v;
+      }
+      handler(progress);
+    };
+  }
+  return _reactNative.NativeAppEventEmitter.addListener('MapboxOfflineProgressDidChange', _handler);
+}
+
+function addOfflineMaxAllowedTilesListener(handler) {
+  return _reactNative.NativeAppEventEmitter.addListener('MapboxOfflineMaxAllowedTiles', handler);
+}
+
+function addOfflineErrorListener(handler) {
+  return _reactNative.NativeAppEventEmitter.addListener('MapboxOfflineError', handler);
+}
+
+var MapView = function (_Component) {
+  babelHelpers.inherits(MapView, _Component);
+
+  function MapView(props) {
+    babelHelpers.classCallCheck(this, MapView);
+
+    var _this = babelHelpers.possibleConstructorReturn(this, (MapView.__proto__ || Object.getPrototypeOf(MapView)).call(this, props));
+
+    _this._native = null;
+
+
+    _this._onRegionDidChange = _this._onRegionDidChange.bind(_this);
+    _this._onRegionWillChange = _this._onRegionWillChange.bind(_this);
+    _this._onOpenAnnotation = _this._onOpenAnnotation.bind(_this);
+    _this._onRightAnnotationTapped = _this._onRightAnnotationTapped.bind(_this);
+    _this._onChangeUserTrackingMode = _this._onChangeUserTrackingMode.bind(_this);
+    _this._onUpdateUserLocation = _this._onUpdateUserLocation.bind(_this);
+    _this._onLongPress = _this._onLongPress.bind(_this);
+    _this._onTap = _this._onTap.bind(_this);
+    _this._onFinishLoadingMap = _this._onFinishLoadingMap.bind(_this);
+    _this._onStartLoadingMap = _this._onStartLoadingMap.bind(_this);
+    _this._onLocateUserFailed = _this._onLocateUserFailed.bind(_this);
+    _this._onNativeComponentMount = _this._onNativeComponentMount.bind(_this);
+    return _this;
+  }
+
+  babelHelpers.createClass(MapView, [{
+    key: 'setDirection',
+    value: function setDirection(direction) {
+      var animated = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+      var callback = arguments[2];
+
+      return this.easeTo({ direction: direction }, animated, callback);
+    }
+  }, {
+    key: 'setZoomLevel',
+    value: function setZoomLevel(zoomLevel) {
+      var animated = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+      var callback = arguments[2];
+
+      return this.easeTo({ zoomLevel: zoomLevel }, animated, callback);
+    }
+  }, {
+    key: 'setCenterCoordinate',
+    value: function setCenterCoordinate(latitude, longitude) {
+      var animated = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+      var callback = arguments[3];
+
+      return this.easeTo({ latitude: latitude, longitude: longitude }, animated, callback);
+    }
+  }, {
+    key: 'setCenterCoordinateZoomLevel',
+    value: function setCenterCoordinateZoomLevel(latitude, longitude, zoomLevel) {
+      var animated = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
+      var callback = arguments[4];
+
+      return this.easeTo({ latitude: latitude, longitude: longitude, zoomLevel: zoomLevel }, animated, callback);
+    }
+  }, {
+    key: 'setCenterCoordinateZoomLevelPitch',
+    value: function setCenterCoordinateZoomLevelPitch(latitude, longitude, zoomLevel, pitch) {
+      var animated = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : true;
+      var callback = arguments[5];
+
+      return this.easeTo({ latitude: latitude, longitude: longitude, zoomLevel: zoomLevel, pitch: pitch }, animated, callback);
+    }
+  }, {
+    key: 'setPitch',
+    value: function setPitch(pitch) {
+      var animated = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+      var callback = arguments[2];
+
+      return this.easeTo({ pitch: pitch }, animated, callback);
+    }
+  }, {
+    key: 'easeTo',
+    value: function easeTo(options) {
+      var animated = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+      var callback = arguments[2];
+
+      var _resolve = void 0;
+      var promise = new Promise(function (resolve) {
+        return _resolve = resolve;
+      });
+      MapboxGLManager.easeTo((0, _reactNative.findNodeHandle)(this), options, animated, function () {
+        callback && callback();
+        _resolve();
+      });
+      return promise;
+    }
+  }, {
+    key: 'setVisibleCoordinateBounds',
+    value: function setVisibleCoordinateBounds(latitudeSW, longitudeSW, latitudeNE, longitudeNE) {
+      var paddingTop = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 0;
+      var paddingRight = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 0;
+      var paddingBottom = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : 0;
+      var paddingLeft = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : 0;
+      var animated = arguments.length > 8 && arguments[8] !== undefined ? arguments[8] : true;
+
+      MapboxGLManager.setVisibleCoordinateBounds((0, _reactNative.findNodeHandle)(this), latitudeSW, longitudeSW, latitudeNE, longitudeNE, paddingTop, paddingRight, paddingBottom, paddingLeft, animated);
+    }
+  }, {
+    key: 'getCenterCoordinateZoomLevel',
+    value: function getCenterCoordinateZoomLevel(callback) {
+      MapboxGLManager.getCenterCoordinateZoomLevel((0, _reactNative.findNodeHandle)(this), callback);
+    }
+  }, {
+    key: 'getDirection',
+    value: function getDirection(callback) {
+      MapboxGLManager.getDirection((0, _reactNative.findNodeHandle)(this), callback);
+    }
+  }, {
+    key: 'getBounds',
+    value: function getBounds(callback) {
+      MapboxGLManager.getBounds((0, _reactNative.findNodeHandle)(this), callback);
+    }
+  }, {
+    key: 'getPitch',
+    value: function getPitch(callback) {
+      MapboxGLManager.getPitch((0, _reactNative.findNodeHandle)(this), callback);
+    }
+  }, {
+    key: 'selectAnnotation',
+    value: function selectAnnotation(annotationId) {
+      var animated = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+
+      MapboxGLManager.selectAnnotation((0, _reactNative.findNodeHandle)(this), annotationId, animated);
+    }
+  }, {
+    key: 'deselectAnnotation',
+    value: function deselectAnnotation() {
+      MapboxGLManager.deselectAnnotation((0, _reactNative.findNodeHandle)(this));
+    }
+  }, {
+    key: 'queryRenderedFeatures',
+    value: function queryRenderedFeatures(options, callback) {
+      var promise = void 0;
+      if (_reactNative.Platform.OS === 'android') {
+        promise = Promise.reject('queryRenderedFeatures() is not yet implemented on Android');
+      } else {
+        promise = MapboxGLManager.queryRenderedFeatures((0, _reactNative.findNodeHandle)(this), options);
+      }
+      bindCallbackToPromise(callback, promise);
+      return promise;
+    }
+  }, {
+    key: '_onRegionDidChange',
+    value: function _onRegionDidChange(event) {
+      if (this.props.onRegionDidChange) this.props.onRegionDidChange(event.nativeEvent.src);
+    }
+  }, {
+    key: '_onRegionWillChange',
+    value: function _onRegionWillChange(event) {
+      if (this.props.onRegionWillChange) this.props.onRegionWillChange(event.nativeEvent.src);
+    }
+  }, {
+    key: '_onOpenAnnotation',
+    value: function _onOpenAnnotation(event) {
+      if (this.props.onOpenAnnotation) this.props.onOpenAnnotation(event.nativeEvent.src);
+    }
+  }, {
+    key: '_onRightAnnotationTapped',
+    value: function _onRightAnnotationTapped(event) {
+      if (this.props.onRightAnnotationTapped) this.props.onRightAnnotationTapped(event.nativeEvent.src);
+    }
+  }, {
+    key: '_onChangeUserTrackingMode',
+    value: function _onChangeUserTrackingMode(event) {
+      if (this.props.onChangeUserTrackingMode) this.props.onChangeUserTrackingMode(event.nativeEvent.src);
+    }
+  }, {
+    key: '_onUpdateUserLocation',
+    value: function _onUpdateUserLocation(event) {
+      if (this.props.onUpdateUserLocation) this.props.onUpdateUserLocation(event.nativeEvent.src);
+    }
+  }, {
+    key: '_onLongPress',
+    value: function _onLongPress(event) {
+      if (this.props.onLongPress) this.props.onLongPress(event.nativeEvent.src);
+    }
+  }, {
+    key: '_onTap',
+    value: function _onTap(event) {
+      if (this.props.onTap) this.props.onTap(event.nativeEvent.src);
+    }
+  }, {
+    key: '_onFinishLoadingMap',
+    value: function _onFinishLoadingMap(event) {
+      if (this.props.onFinishLoadingMap) this.props.onFinishLoadingMap(event.nativeEvent.src);
+    }
+  }, {
+    key: '_onStartLoadingMap',
+    value: function _onStartLoadingMap(event) {
+      if (this.props.onStartLoadingMap) this.props.onStartLoadingMap(event.nativeEvent.src);
+    }
+  }, {
+    key: '_onLocateUserFailed',
+    value: function _onLocateUserFailed(event) {
+      if (this.props.onLocateUserFailed) this.props.onLocateUserFailed(event.nativeEvent.src);
+    }
+  }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(newProps) {
+      var _this2 = this;
+
+      var oldKeys = (0, _clone2.default)(this._annotations);
+      var itemsToAdd = [];
+      var itemsToRemove = [];
+
+      var isImmutable = newProps.annotationsAreImmutable;
+      if (isImmutable && this.props.annotations === newProps.annotations) {
+        return;
+      }
+
+      newProps.annotations.forEach(function (annotation) {
+        var id = annotation.id;
+        if (!(0, _isEqual2.default)(_this2._annotations[id], annotation)) {
+          _this2._annotations[id] = isImmutable ? annotation : (0, _cloneDeep2.default)(annotation);
+          itemsToAdd.push(annotation);
+        }
+        oldKeys[id] = null;
+      });
+
+      for (var key in oldKeys) {
+        if (oldKeys[key]) {
+          delete this._annotations[key];
+          itemsToRemove.push(key);
+        }
+      }
+
+      MapboxGLManager.spliceAnnotations((0, _reactNative.findNodeHandle)(this), false, itemsToRemove, itemsToAdd);
+    }
+  }, {
+    key: '_onNativeComponentMount',
+    value: function _onNativeComponentMount(ref) {
+      if (this._native === ref) {
+        return;
+      }
+      this._native = ref;
+
+      MapboxGLManager.spliceAnnotations((0, _reactNative.findNodeHandle)(this), true, [], this.props.annotations);
+
+      var isImmutable = this.props.annotationsAreImmutable;
+
+      this._annotations = this.props.annotations.reduce(function (acc, annotation) {
+        acc[annotation.id] = isImmutable ? annotation : (0, _cloneDeep2.default)(annotation);
+        return acc;
+      }, {});
+    }
+  }, {
+    key: 'setNativeProps',
+    value: function setNativeProps(nativeProps) {
+      this._native && this._native.setNativeProps(nativeProps);
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      this._native = null;
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(MapboxGLView, babelHelpers.extends({}, this.props, {
+        ref: this._onNativeComponentMount,
+        onRegionDidChange: this._onRegionDidChange,
+        onRegionWillChange: this._onRegionWillChange,
+        enableOnRegionDidChange: !!this.props.onRegionDidChange,
+        enableOnRegionWillChange: !!this.props.onRegionWillChange,
+        onOpenAnnotation: this._onOpenAnnotation,
+        onRightAnnotationTapped: this._onRightAnnotationTapped,
+        onUpdateUserLocation: this._onUpdateUserLocation,
+        onLongPress: this._onLongPress,
+        onTap: this._onTap,
+        onFinishLoadingMap: this._onFinishLoadingMap,
+        onStartLoadingMap: this._onStartLoadingMap,
+        onLocateUserFailed: this._onLocateUserFailed,
+        onChangeUserTrackingMode: this._onChangeUserTrackingMode
+      }));
+    }
+  }]);
+  return MapView;
+}(_react.Component);
+
+MapView.propTypes = babelHelpers.extends({}, _reactNative.View.propTypes, {
+
+  initialZoomLevel: _react.PropTypes.number,
+  initialDirection: _react.PropTypes.number,
+  initialCenterCoordinate: _react.PropTypes.shape({
+    latitude: _react.PropTypes.number.isRequired,
+    longitude: _react.PropTypes.number.isRequired
+  }),
+  clipsToBounds: _react.PropTypes.bool,
+  debugActive: _react.PropTypes.bool,
+  rotateEnabled: _react.PropTypes.bool,
+  scrollEnabled: _react.PropTypes.bool,
+  zoomEnabled: _react.PropTypes.bool,
+  minimumZoomLevel: _react.PropTypes.number,
+  maximumZoomLevel: _react.PropTypes.number,
+  pitchEnabled: _react.PropTypes.bool,
+  annotationsPopUpEnabled: _react.PropTypes.bool,
+  showsUserLocation: _react.PropTypes.bool,
+  styleURL: _react.PropTypes.string.isRequired,
+  userTrackingMode: _react.PropTypes.number,
+  attributionButtonIsHidden: _react.PropTypes.bool,
+  logoIsHidden: _react.PropTypes.bool,
+  compassIsHidden: _react.PropTypes.bool,
+  userLocationVerticalAlignment: _react.PropTypes.number,
+  contentInset: _react.PropTypes.arrayOf(_react.PropTypes.number),
+
+  annotations: _react.PropTypes.arrayOf(_react.PropTypes.shape({
+    coordinates: _react.PropTypes.array.isRequired,
+    title: _react.PropTypes.string,
+    subtitle: _react.PropTypes.string,
+    fillAlpha: _react.PropTypes.number,
+    fillColor: _react.PropTypes.string,
+    strokeAlpha: _react.PropTypes.number,
+    strokeColor: _react.PropTypes.string,
+    strokeWidth: _react.PropTypes.number,
+    id: _react.PropTypes.string,
+    type: _react.PropTypes.string.isRequired,
+    rightCalloutAccessory: _react.PropTypes.shape({
+      height: _react.PropTypes.number,
+      width: _react.PropTypes.number,
+      url: _react.PropTypes.string
+    }),
+    annotationImage: _react.PropTypes.shape({
+      height: _react.PropTypes.number,
+      width: _react.PropTypes.number,
+      url: _react.PropTypes.string
+    })
+  })),
+  annotationsAreImmutable: _react.PropTypes.bool,
+
+  onRegionDidChange: _react.PropTypes.func,
+  onRegionWillChange: _react.PropTypes.func,
+  onOpenAnnotation: _react.PropTypes.func,
+  onUpdateUserLocation: _react.PropTypes.func,
+  onRightAnnotationTapped: _react.PropTypes.func,
+  onFinishLoadingMap: _react.PropTypes.func,
+  onStartLoadingMap: _react.PropTypes.func,
+  onLocateUserFailed: _react.PropTypes.func,
+  onLongPress: _react.PropTypes.func,
+  onTap: _react.PropTypes.func,
+  onChangeUserTrackingMode: _react.PropTypes.func
+});
+MapView.defaultProps = {
+  initialCenterCoordinate: {
+    latitude: 0,
+    longitude: 0
+  },
+  initialDirection: 0,
+  initialZoomLevel: 0,
+  minimumZoomLevel: 0,
+  maximumZoomLevel: 20,
+  debugActive: false,
+  rotateEnabled: true,
+  scrollEnabled: true,
+  pitchEnabled: true,
+  showsUserLocation: false,
+  styleURL: mapStyles.streets,
+  userTrackingMode: userTrackingMode.none,
+  zoomEnabled: true,
+  annotationsPopUpEnabled: true,
+  attributionButtonIsHidden: false,
+  logoIsHidden: false,
+  compassIsHidden: false,
+  annotationsAreImmutable: false,
+  annotations: [],
+  contentInset: [0, 0, 0, 0]
+};
+
+
+var MapboxGLView = (0, _reactNative.requireNativeComponent)('RCTMapboxGL', MapView, {
+  nativeOnly: {
+    onChange: true,
+    enableOnRegionDidChange: true,
+    enableOnRegionWillChange: true
+  }
+});
+
+var Mapbox = {
+  MapView: MapView,
+  Annotation: _Annotation2.default,
+  mapStyles: mapStyles, userTrackingMode: userTrackingMode, userLocationVerticalAlignment: userLocationVerticalAlignment, unknownResourceCount: unknownResourceCount,
+  getMetricsEnabled: getMetricsEnabled, setMetricsEnabled: setMetricsEnabled,
+  setAccessToken: setAccessToken,
+  addOfflinePack: addOfflinePack, getOfflinePacks: getOfflinePacks, removeOfflinePack: removeOfflinePack,
+  addOfflinePackProgressListener: addOfflinePackProgressListener,
+  addOfflineMaxAllowedTilesListener: addOfflineMaxAllowedTilesListener,
+  addOfflineErrorListener: addOfflineErrorListener,
+  setOfflinePackProgressThrottleInterval: setOfflinePackProgressThrottleInterval
+};
+
+module.exports = Mapbox;
+}, 759, null, "react-native-mapbox-gl/index.js");
+__d(/* lodash/cloneDeep.js */function(global, require, module, exports) {var baseClone = require(543           ); // 543 = ./_baseClone
+
+var CLONE_DEEP_FLAG = 1,
+    CLONE_SYMBOLS_FLAG = 4;
+
+function cloneDeep(value) {
+  return baseClone(value, CLONE_DEEP_FLAG | CLONE_SYMBOLS_FLAG);
+}
+
+module.exports = cloneDeep;
+}, 760, null, "lodash/cloneDeep.js");
+__d(/* lodash/clone.js */function(global, require, module, exports) {var baseClone = require(543           ); // 543 = ./_baseClone
+
+var CLONE_SYMBOLS_FLAG = 4;
+
+function clone(value) {
+  return baseClone(value, CLONE_SYMBOLS_FLAG);
+}
+
+module.exports = clone;
+}, 761, null, "lodash/clone.js");
+__d(/* react-native-mapbox-gl/Annotation.js */function(global, require, module, exports) {var _react = require(282    ); // 282 = react
+
+var _react2 = babelHelpers.interopRequireDefault(_react);
+
+var _reactNative = require(12            ); // 12 = react-native
+
+var _resolveAssetSource = require(171                                              ); // 171 = react-native/Libraries/Image/resolveAssetSource
+
+var _resolveAssetSource2 = babelHelpers.interopRequireDefault(_resolveAssetSource);
+
+var viewConfig = {
+  uiViewClassName: 'RCTMapboxAnnotation',
+  validAttributes: {
+    coordinate: true
+  }
+};
+
+var propTypes = babelHelpers.extends({}, _reactNative.View.propTypes, {
+  id: _react.PropTypes.string.isRequired,
+  title: _react.PropTypes.string,
+  subtitle: _react.PropTypes.string,
+  coordinate: _react.PropTypes.shape({
+    latitude: _react.PropTypes.number.isRequired,
+    longitude: _react.PropTypes.number.isRequired
+  }).isRequired
+
+});
+
+var MapboxAnnotation = function (_React$Component) {
+  babelHelpers.inherits(MapboxAnnotation, _React$Component);
+
+  function MapboxAnnotation() {
+    babelHelpers.classCallCheck(this, MapboxAnnotation);
+    return babelHelpers.possibleConstructorReturn(this, (MapboxAnnotation.__proto__ || Object.getPrototypeOf(MapboxAnnotation)).apply(this, arguments));
+  }
+
+  babelHelpers.createClass(MapboxAnnotation, [{
+    key: 'setNativeProps',
+    value: function setNativeProps(nativeProps) {
+      this.marker.setNativeProps(nativeProps);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      return _react2.default.createElement(RCTMapboxAnnotation, babelHelpers.extends({
+        ref: function ref(_ref) {
+          _this2.marker = _ref;
+        }
+      }, this.props));
+    }
+  }]);
+  return MapboxAnnotation;
+}(_react2.default.Component);
+
+MapboxAnnotation.propTypes = propTypes;
+MapboxAnnotation.viewConfig = viewConfig;
+
+var RCTMapboxAnnotation = (0, _reactNative.requireNativeComponent)('RCTMapboxAnnotation', MapboxAnnotation);
+module.exports = MapboxAnnotation;
+}, 762, null, "react-native-mapbox-gl/Annotation.js");
+__d(/* @components/MapExample.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require(282    ); // 282 = react
+
+var _react2 = babelHelpers.interopRequireDefault(_react);
+
+var _reactNativeMapboxGl = require(759                     ); // 759 = react-native-mapbox-gl
+
+var _reactNativeMapboxGl2 = babelHelpers.interopRequireDefault(_reactNativeMapboxGl);
+
+var _reactNative = require(12            ); // 12 = react-native
+
+var accessToken = 'pk.eyJ1IjoibHJ2b2xsZSIsImEiOiJjajFpcndxN2swMWJ0MnFvaG1uaWNlOHVkIn0.ptRQFGDH9slee6PowWtXOg';
+_reactNativeMapboxGl2.default.setAccessToken(accessToken);
+
+var MapExample = function (_Component) {
+  babelHelpers.inherits(MapExample, _Component);
+
+  function MapExample(props) {
+    babelHelpers.classCallCheck(this, MapExample);
+
+    var _this = babelHelpers.possibleConstructorReturn(this, (MapExample.__proto__ || Object.getPrototypeOf(MapExample)).call(this, props));
+
+    _this.state = {
+      center: {
+        latitude: 40.72052634,
+        longitude: -73.97686958312988
+      },
+      zoom: 11,
+      userTrackingMode: _reactNativeMapboxGl2.default.userTrackingMode.none,
+      annotations: [{
+        coordinates: [40.72052634, -73.97686958312988],
+        type: 'point',
+        title: 'This is marker 1',
+        subtitle: 'It has a rightCalloutAccessory too',
+        rightCalloutAccessory: {
+          source: { uri: 'https://cldup.com/9Lp0EaBw5s.png' },
+          height: 25,
+          width: 25
+        },
+        annotationImage: {
+          source: { uri: 'https://cldup.com/CnRLZem9k9.png' },
+          height: 25,
+          width: 25
+        },
+        id: 'marker1'
+      }, {
+        coordinates: [40.714541341726175, -74.00579452514648],
+        type: 'point',
+        title: 'Important!',
+        subtitle: 'Neat, this is a custom annotation image',
+        annotationImage: {
+          source: { uri: 'https://cldup.com/7NLZklp8zS.png' },
+          height: 25,
+          width: 25
+        },
+        id: 'marker2'
+      }, {
+        coordinates: [[40.76572150042782, -73.99429321289062], [40.743485405490695, -74.00218963623047], [40.728266950429735, -74.00218963623047], [40.728266950429735, -73.99154663085938], [40.73633186448861, -73.98983001708984], [40.74465591168391, -73.98914337158203], [40.749337730454826, -73.9870834350586]],
+        type: 'polyline',
+        strokeColor: '#00FB00',
+        strokeWidth: 4,
+        strokeAlpha: 0.5,
+        id: 'foobar'
+      }, {
+        coordinates: [[40.749857912194386, -73.96820068359375], [40.741924698522055, -73.9735221862793], [40.735681504432264, -73.97523880004883], [40.7315190495212, -73.97438049316406], [40.729177554196376, -73.97180557250975], [40.72345355209305, -73.97438049316406], [40.719290332250544, -73.97455215454102], [40.71369559554873, -73.97729873657227], [40.71200407096382, -73.97850036621094], [40.71031250340588, -73.98691177368163], [40.71031250340588, -73.99154663085938]],
+        type: 'polygon',
+        fillAlpha: 1,
+        strokeColor: '#ffffff',
+        fillColor: '#0000ff',
+        id: 'zap'
+      }]
+    };
+
+
+    _this._onRegionDidChange = _this._onRegionDidChange.bind(_this);
+    _this._onRegionWillChange = _this._onRegionWillChange.bind(_this);
+    _this._onOpenAnnotation = _this._onOpenAnnotation.bind(_this);
+    _this._onRightAnnotationTapped = _this._onRightAnnotationTapped.bind(_this);
+    _this._onChangeUserTrackingMode = _this._onChangeUserTrackingMode.bind(_this);
+    _this._onUpdateUserLocation = _this._onUpdateUserLocation.bind(_this);
+    _this._onLongPress = _this._onLongPress.bind(_this);
+    _this._onTap = _this._onTap.bind(_this);
+    _this._onFinishLoadingMap = _this._onFinishLoadingMap.bind(_this);
+    _this._onStartLoadingMap = _this._onStartLoadingMap.bind(_this);
+    _this._onLocateUserFailed = _this._onLocateUserFailed.bind(_this);
+    _this._onNativeComponentMount = _this._onNativeComponentMount.bind(_this);
+    return _this;
+  }
+
+  babelHelpers.createClass(MapExample, [{
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      return _react2.default.createElement(
+        _reactNative.View,
+        { style: styles.container },
+        _react2.default.createElement(_reactNativeMapboxGl.MapView, {
+          ref: function ref(map) {
+            _this2._map = map;
+          },
+          style: styles.map,
+          initialCenterCoordinate: this.state.center,
+          initialZoomLevel: this.state.zoom,
+          initialDirection: 0,
+          rotateEnabled: true,
+          scrollEnabled: true,
+          zoomEnabled: true,
+          showsUserLocation: false,
+          styleURL: _reactNativeMapboxGl2.default.mapStyles.dark,
+          userTrackingMode: this.state.userTrackingMode,
+          annotations: this.state.annotations,
+          annotationsAreImmutable: true,
+          onChangeUserTrackingMode: this.onChangeUserTrackingMode,
+          onRegionDidChange: this.onRegionDidChange,
+          onRegionWillChange: this.onRegionWillChange,
+          onOpenAnnotation: this.onOpenAnnotation,
+          onRightAnnotationTapped: this.onRightAnnotationTapped,
+          onUpdateUserLocation: this.onUpdateUserLocation,
+          onLongPress: this.onLongPress,
+          onTap: this.onTap
+        }),
+        _react2.default.createElement(
+          _reactNative.ScrollView,
+          { style: styles.scrollView },
+          this._renderButtons()
+        )
+      );
+    }
+  }, {
+    key: '_renderButtons',
+    value: function _renderButtons() {
+      var _this3 = this;
+
+      return _react2.default.createElement(
+        _reactNative.View,
+        null,
+        _react2.default.createElement(
+          _reactNative.Text,
+          { onPress: function onPress() {
+              return _this3._map && _this3._map.setDirection(0);
+            } },
+          'Set direction to 0'
+        ),
+        _react2.default.createElement(
+          _reactNative.Text,
+          { onPress: function onPress() {
+              return _this3._map && _this3._map.setZoomLevel(6);
+            } },
+          'Zoom out to zoom level 6'
+        )
+      );
+    }
+  }]);
+  return MapExample;
+}(_react.Component);
+
+MapExample.componentName = 'MapExample';
+MapExample.propTypes = {
+
+  title: _react.PropTypes.string
+
+};
+
+
+var styles = _reactNative.StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'stretch'
+  },
+  map: {
+    flex: 1
+  },
+  scrollView: {
+    flex: 1
+  }
+});
+
+exports.default = MapExample;
+}, 763, null, "@components/MapExample.js");
 __d(/* @containers/StyleGuideView.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -75261,7 +76076,7 @@ var _react2 = babelHelpers.interopRequireDefault(_react);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _reactNativeTabView = require(760                    ); // 760 = react-native-tab-view
+var _reactNativeTabView = require(765                    ); // 765 = react-native-tab-view
 
 var _reactNativeElements = require(529                    ); // 529 = react-native-elements
 
@@ -75694,27 +76509,27 @@ var _initialiseProps = function _initialiseProps() {
 };
 
 exports.default = StyleGuide;
-}, 759, null, "@containers/StyleGuideView.js");
+}, 764, null, "@containers/StyleGuideView.js");
 __d(/* react-native-tab-view/index.js */function(global, require, module, exports) {
 
 module.exports = {
   get TabViewAnimated() {
-    return require(761                    ).default; // 761 = ./src/TabViewAnimated
+    return require(766                    ).default; // 766 = ./src/TabViewAnimated
   },
   get TabViewPagerPan() {
-    return require(766                    ).default; // 766 = ./src/TabViewPagerPan
+    return require(771                    ).default; // 771 = ./src/TabViewPagerPan
   },
   get TabViewPagerScroll() {
-    return require(765                       ).default; // 765 = ./src/TabViewPagerScroll
+    return require(770                       ).default; // 770 = ./src/TabViewPagerScroll
   },
   get TabViewPagerAndroid() {
-    return require(764                        ).default; // 764 = ./src/TabViewPagerAndroid
+    return require(769                        ).default; // 769 = ./src/TabViewPagerAndroid
   },
   get TabBar() {
-    return require(768           ).default; // 768 = ./src/TabBar
+    return require(773           ).default; // 773 = ./src/TabBar
   }
 };
-}, 760, null, "react-native-tab-view/index.js");
+}, 765, null, "react-native-tab-view/index.js");
 __d(/* react-native-tab-view/src/TabViewAnimated.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -75725,11 +76540,11 @@ var _react2 = babelHelpers.interopRequireDefault(_react);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _TabViewTransitioner = require(762                    ); // 762 = ./TabViewTransitioner
+var _TabViewTransitioner = require(767                    ); // 767 = ./TabViewTransitioner
 
 var _TabViewTransitioner2 = babelHelpers.interopRequireDefault(_TabViewTransitioner);
 
-var _TabViewPropTypes = require(763                 ); // 763 = ./TabViewPropTypes
+var _TabViewPropTypes = require(768                 ); // 768 = ./TabViewPropTypes
 
 var styles = _reactNative.StyleSheet.create({
   container: {
@@ -75742,13 +76557,13 @@ var TabViewPager = void 0;
 
 switch (_reactNative.Platform.OS) {
   case 'android':
-    TabViewPager = require(764                    ).default; // 764 = ./TabViewPagerAndroid
+    TabViewPager = require(769                    ).default; // 769 = ./TabViewPagerAndroid
     break;
   case 'ios':
-    TabViewPager = require(765                   ).default; // 765 = ./TabViewPagerScroll
+    TabViewPager = require(770                   ).default; // 770 = ./TabViewPagerScroll
     break;
   default:
-    TabViewPager = require(766                ).default; // 766 = ./TabViewPagerPan
+    TabViewPager = require(771                ).default; // 771 = ./TabViewPagerPan
     break;
 }
 
@@ -75867,7 +76682,7 @@ var _initialiseProps = function _initialiseProps() {
 };
 
 exports.default = TabViewAnimated;
-}, 761, null, "react-native-tab-view/src/TabViewAnimated.js");
+}, 766, null, "react-native-tab-view/src/TabViewAnimated.js");
 __d(/* react-native-tab-view/src/TabViewTransitioner.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -75878,7 +76693,7 @@ var _react2 = babelHelpers.interopRequireDefault(_react);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _TabViewPropTypes = require(763                 ); // 763 = ./TabViewPropTypes
+var _TabViewPropTypes = require(768                 ); // 768 = ./TabViewPropTypes
 
 var DefaultTransitionSpec = {
   timing: _reactNative.Animated.spring,
@@ -76092,7 +76907,7 @@ TabViewTransitioner.defaultProps = {
   }
 };
 exports.default = TabViewTransitioner;
-}, 762, null, "react-native-tab-view/src/TabViewTransitioner.js");
+}, 767, null, "react-native-tab-view/src/TabViewTransitioner.js");
 __d(/* react-native-tab-view/src/TabViewPropTypes.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -76124,7 +76939,7 @@ var SceneRendererPropType = exports.SceneRendererPropType = {
   getLastPosition: _react.PropTypes.func.isRequired,
   subscribe: _react.PropTypes.func.isRequired
 };
-}, 763, null, "react-native-tab-view/src/TabViewPropTypes.js");
+}, 768, null, "react-native-tab-view/src/TabViewPropTypes.js");
 __d(/* react-native-tab-view/src/TabViewPagerAndroid.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -76135,7 +76950,7 @@ var _react2 = babelHelpers.interopRequireDefault(_react);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _TabViewPropTypes = require(763                 ); // 763 = ./TabViewPropTypes
+var _TabViewPropTypes = require(768                 ); // 768 = ./TabViewPropTypes
 
 var styles = _reactNative.StyleSheet.create({
   container: {
@@ -76270,7 +77085,7 @@ TabViewPagerAndroid.propTypes = babelHelpers.extends({}, _TabViewPropTypes.Scene
   children: _react.PropTypes.node
 });
 exports.default = TabViewPagerAndroid;
-}, 764, null, "react-native-tab-view/src/TabViewPagerAndroid.js");
+}, 769, null, "react-native-tab-view/src/TabViewPagerAndroid.js");
 __d(/* react-native-tab-view/src/TabViewPagerScroll.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -76281,7 +77096,7 @@ var _react2 = babelHelpers.interopRequireDefault(_react);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _TabViewPropTypes = require(763                 ); // 763 = ./TabViewPropTypes
+var _TabViewPropTypes = require(768                 ); // 768 = ./TabViewPropTypes
 
 var styles = _reactNative.StyleSheet.create({
   container: {
@@ -76425,7 +77240,7 @@ TabViewPagerScroll.propTypes = babelHelpers.extends({}, _TabViewPropTypes.SceneR
   children: _react.PropTypes.node
 });
 exports.default = TabViewPagerScroll;
-}, 765, null, "react-native-tab-view/src/TabViewPagerScroll.js");
+}, 770, null, "react-native-tab-view/src/TabViewPagerScroll.js");
 __d(/* react-native-tab-view/src/TabViewPagerPan.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -76436,11 +77251,11 @@ var _react2 = babelHelpers.interopRequireDefault(_react);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _TabViewStyleInterpolator = require(767                         ); // 767 = ./TabViewStyleInterpolator
+var _TabViewStyleInterpolator = require(772                         ); // 772 = ./TabViewStyleInterpolator
 
 var _TabViewStyleInterpolator2 = babelHelpers.interopRequireDefault(_TabViewStyleInterpolator);
 
-var _TabViewPropTypes = require(763                 ); // 763 = ./TabViewPropTypes
+var _TabViewPropTypes = require(768                 ); // 768 = ./TabViewPropTypes
 
 var styles = _reactNative.StyleSheet.create({
   sheet: {
@@ -76595,7 +77410,7 @@ TabViewPagerPan.defaultProps = {
   swipeVelocityThreshold: 0.25
 };
 exports.default = TabViewPagerPan;
-}, 766, null, "react-native-tab-view/src/TabViewPagerPan.js");
+}, 771, null, "react-native-tab-view/src/TabViewPagerPan.js");
 __d(/* react-native-tab-view/src/TabViewStyleInterpolator.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -76628,7 +77443,7 @@ function forHorizontal(props) {
 exports.default = {
   forHorizontal: forHorizontal
 };
-}, 767, null, "react-native-tab-view/src/TabViewStyleInterpolator.js");
+}, 772, null, "react-native-tab-view/src/TabViewStyleInterpolator.js");
 __d(/* react-native-tab-view/src/TabBar.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -76639,11 +77454,11 @@ var _react2 = babelHelpers.interopRequireDefault(_react);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _TouchableItem = require(769              ); // 769 = ./TouchableItem
+var _TouchableItem = require(774              ); // 774 = ./TouchableItem
 
 var _TouchableItem2 = babelHelpers.interopRequireDefault(_TouchableItem);
 
-var _TabViewPropTypes = require(763                 ); // 763 = ./TabViewPropTypes
+var _TabViewPropTypes = require(768                 ); // 768 = ./TabViewPropTypes
 
 var styles = _reactNative.StyleSheet.create({
   container: {
@@ -77077,7 +77892,7 @@ TabBar.defaultProps = {
   }
 };
 exports.default = TabBar;
-}, 768, null, "react-native-tab-view/src/TabBar.js");
+}, 773, null, "react-native-tab-view/src/TabBar.js");
 __d(/* react-native-tab-view/src/TouchableItem.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -77148,18 +77963,18 @@ TouchableItem.defaultProps = {
   pressColor: 'rgba(255, 255, 255, .4)'
 };
 exports.default = TouchableItem;
-}, 769, null, "react-native-tab-view/src/TouchableItem.js");
+}, 774, null, "react-native-tab-view/src/TouchableItem.js");
 __d(/* @containers/recipes/Browse/BrowseContainer.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
 var _reactRedux = require(422          ); // 422 = react-redux
 
-var _actions = require(771                     ); // 771 = @redux/recipes/actions
+var _actions = require(776                     ); // 776 = @redux/recipes/actions
 
 var RecipeActions = babelHelpers.interopRequireWildcard(_actions);
 
-var _BrowseView = require(773           ); // 773 = ./BrowseView
+var _BrowseView = require(778           ); // 778 = ./BrowseView
 
 var _BrowseView2 = babelHelpers.interopRequireDefault(_BrowseView);
 
@@ -77174,14 +77989,14 @@ var mapDispatchToProps = {
 };
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_BrowseView2.default);
-}, 770, null, "@containers/recipes/Browse/BrowseContainer.js");
+}, 775, null, "@containers/recipes/Browse/BrowseContainer.js");
 __d(/* @redux/recipes/actions.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.getMeals = getMeals;
 exports.reset = reset;
 
-var _recipe_meal = require(772                         ); // 772 = @jsondata/recipe_meal.json
+var _recipe_meal = require(777                         ); // 777 = @jsondata/recipe_meal.json
 
 var _recipe_meal2 = babelHelpers.interopRequireDefault(_recipe_meal);
 
@@ -77199,7 +78014,7 @@ function reset() {
     type: 'MEALS_RESET'
   };
 }
-}, 771, null, "@redux/recipes/actions.js");
+}, 776, null, "@redux/recipes/actions.js");
 __d(/* @jsondata/recipe_meal.json */function(global, require, module, exports) {module.exports = module.exports = [{
   "id": 0,
   "name": "Academic & Support"
@@ -77213,7 +78028,7 @@ __d(/* @jsondata/recipe_meal.json */function(global, require, module, exports) {
   "id": 3,
   "name": "Study Spaces"
 }];
-}, 772, null, "@jsondata/recipe_meal.json");
+}, 777, null, "@jsondata/recipe_meal.json");
 __d(/* @containers/recipes/Browse/BrowseView.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -77224,7 +78039,7 @@ var _react2 = babelHelpers.interopRequireDefault(_react);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _reactNativeTabView = require(760                    ); // 760 = react-native-tab-view
+var _reactNativeTabView = require(765                    ); // 765 = react-native-tab-view
 
 var _theme = require(498      ); // 498 = @theme/
 
@@ -77232,7 +78047,7 @@ var _api = require(516       ); // 516 = @lib/api
 
 var _api2 = babelHelpers.interopRequireDefault(_api);
 
-var _ListingContainer = require(774                                           ); // 774 = @containers/recipes/Listing/ListingContainer
+var _ListingContainer = require(779                                           ); // 779 = @containers/recipes/Listing/ListingContainer
 
 var _ListingContainer2 = babelHelpers.interopRequireDefault(_ListingContainer);
 
@@ -77388,7 +78203,7 @@ var _initialiseProps = function _initialiseProps() {
 };
 
 exports.default = RecipeTabs;
-}, 773, null, "@containers/recipes/Browse/BrowseView.js");
+}, 778, null, "@containers/recipes/Browse/BrowseView.js");
 __d(/* @containers/recipes/Listing/ListingContainer.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -77405,7 +78220,7 @@ var _api2 = babelHelpers.interopRequireDefault(_api);
 
 var _constants = require(504          ); // 504 = @constants/
 
-var _recipes = require(775                     ); // 775 = @jsondata/recipes.json
+var _recipes = require(780                     ); // 780 = @jsondata/recipes.json
 
 var _recipes2 = babelHelpers.interopRequireDefault(_recipes);
 
@@ -77417,7 +78232,7 @@ var _Loading = require(754                          ); // 754 = @components/gene
 
 var _Loading2 = babelHelpers.interopRequireDefault(_Loading);
 
-var _ListingView = require(776            ); // 776 = ./ListingView
+var _ListingView = require(781            ); // 781 = ./ListingView
 
 var _ListingView2 = babelHelpers.interopRequireDefault(_ListingView);
 
@@ -77489,15 +78304,39 @@ MealListing.propTypes = {
   meal: _react.PropTypes.string.isRequired
 };
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(MealListing);
-}, 774, null, "@containers/recipes/Listing/ListingContainer.js");
+}, 779, null, "@containers/recipes/Listing/ListingContainer.js");
 __d(/* @jsondata/recipes.json */function(global, require, module, exports) {module.exports = module.exports = [{
   "id": 0,
   "title": "Study Skills and Time Management",
   "room": "Inquiry Center",
   "url": "https://sites.hampshire.edu/knowledgecommons/",
   "recipe_meal": [0]
+}, {
+  "id": 1,
+  "title": "Technology and Digital Tools",
+  "room": "Inquiry Center",
+  "url": "https://sites.hampshire.edu/knowledgecommons/",
+  "recipe_meal": [0]
+}, {
+  "id": 2,
+  "title": "Library Research",
+  "room": "Inquiry Center & InfoBar",
+  "url": "https://sites.hampshire.edu/knowledgecommons/",
+  "recipe_meal": [0]
+}, {
+  "id": 3,
+  "title": "Writing Help",
+  "room": "2nd Floor Library Training Room",
+  "url": "https://www.hampshire.edu/writing-center/the-writing-center",
+  "recipe_meal": [0]
+}, {
+  "id": 4,
+  "title": "Transformative Speaking Peer Mentors",
+  "room": "Hill Urbina",
+  "url": "https://www.hampshire.edu/academics/transformative-speaking-program",
+  "recipe_meal": [0]
 }];
-}, 775, null, "@jsondata/recipes.json");
+}, 780, null, "@jsondata/recipes.json");
 __d(/* @containers/recipes/Listing/ListingView.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -77512,7 +78351,7 @@ var _theme = require(498      ); // 498 = @theme/
 
 var _constants = require(504          ); // 504 = @constants/
 
-var _CardContainer = require(777                                     ); // 777 = @containers/recipes/Card/CardContainer
+var _CardContainer = require(782                                     ); // 782 = @containers/recipes/Card/CardContainer
 
 var _CardContainer2 = babelHelpers.interopRequireDefault(_CardContainer);
 
@@ -77600,7 +78439,7 @@ RecipeListing.defaultProps = {
   reFetch: null
 };
 exports.default = RecipeListing;
-}, 776, null, "@containers/recipes/Listing/ListingView.js");
+}, 781, null, "@containers/recipes/Listing/ListingView.js");
 __d(/* @containers/recipes/Card/CardContainer.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -77621,7 +78460,7 @@ var _util = require(519        ); // 519 = @lib/util
 
 var _util2 = babelHelpers.interopRequireDefault(_util);
 
-var _CardView = require(778         ); // 778 = ./CardView
+var _CardView = require(783         ); // 783 = ./CardView
 
 var _CardView2 = babelHelpers.interopRequireDefault(_CardView);
 
@@ -77686,7 +78525,7 @@ var _initialiseProps = function _initialiseProps() {
 
   this.onPressCard = function () {
     if (_this2.props.recipe.id === 0) {
-      _reactNativeRouterFlux.Actions.webView({ url: _this2.props.url });
+      _reactNativeRouterFlux.Actions.webView({ url: _this2.props.recipe.url, title: _this2.props.recipe.title });
     }
   };
 
@@ -77733,12 +78572,11 @@ var _initialiseProps = function _initialiseProps() {
     var recipe = _this2.state.recipe;
     var user = _this2.props.user;
 
-    console.log("RRRR" + recipe);
     return _react2.default.createElement(_CardView2.default, {
       title: recipe.title,
       room: recipe.room,
       url: recipe.url,
-      onPress: _this2.onPressCard(recipe.url),
+      onPress: _this2.onPressCard,
       onPressFavourite: user && user.id ? _this2.onPressFavourite : null,
       isFavourite: user && user.id && _this2.isFavourite() && true
     });
@@ -77746,7 +78584,7 @@ var _initialiseProps = function _initialiseProps() {
 };
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(RecipeCard);
-}, 777, null, "@containers/recipes/Card/CardContainer.js");
+}, 782, null, "@containers/recipes/Card/CardContainer.js");
 __d(/* @containers/recipes/Card/CardView.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -77854,7 +78692,7 @@ RecipeCard.defaultProps = {
   isFavourite: null
 };
 exports.default = RecipeCard;
-}, 778, null, "@containers/recipes/Card/CardView.js");
+}, 783, null, "@containers/recipes/Card/CardView.js");
 __d(/* @containers/recipes/RecipeView.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -78023,12 +78861,150 @@ RecipeView.propTypes = {
   }).isRequired
 };
 exports.default = RecipeView;
-}, 779, null, "@containers/recipes/RecipeView.js");
+}, 784, null, "@containers/recipes/RecipeView.js");
+__d(/* @components/general/MapComponent.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require(282    ); // 282 = react
+
+var _react2 = babelHelpers.interopRequireDefault(_react);
+
+var _reactNativeMapboxGl = require(759                     ); // 759 = react-native-mapbox-gl
+
+var _reactNativeMapboxGl2 = babelHelpers.interopRequireDefault(_reactNativeMapboxGl);
+
+var _reactNative = require(12            ); // 12 = react-native
+
+var _Ionicons = require(697                                 ); // 697 = react-native-vector-icons/Ionicons
+
+var _Ionicons2 = babelHelpers.interopRequireDefault(_Ionicons);
+
+var _theme = require(498      ); // 498 = @theme/
+
+var _ui = require(526   ); // 526 = @ui/
+
+var accessToken = 'pk.eyJ1IjoibHJ2b2xsZSIsImEiOiJjajFpcndxN2swMWJ0MnFvaG1uaWNlOHVkIn0.ptRQFGDH9slee6PowWtXOg';
+_reactNativeMapboxGl2.default.setAccessToken(accessToken);
+
+var styles = _reactNative.StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'stretch'
+  },
+  map: {
+    flex: 1
+  },
+  scrollView: {
+    flex: 1
+  }
+});
+
+var MapComponent = function (_Component) {
+  babelHelpers.inherits(MapComponent, _Component);
+
+  function MapComponent(props) {
+    babelHelpers.classCallCheck(this, MapComponent);
+
+    var _this = babelHelpers.possibleConstructorReturn(this, (MapComponent.__proto__ || Object.getPrototypeOf(MapComponent)).call(this, props));
+
+    _this.state = {
+      center: {
+        latitude: 40.72052634,
+        longitude: -73.97686958312988
+      },
+      zoom: 11,
+      userTrackingMode: _reactNativeMapboxGl2.default.userTrackingMode.none,
+      annotations: [{
+        coordinates: [40.72052634, -73.97686958312988],
+        type: 'point',
+        title: 'This is marker 1',
+        subtitle: 'It has a rightCalloutAccessory too',
+        rightCalloutAccessory: {
+          source: { uri: 'https://cldup.com/9Lp0EaBw5s.png' },
+          height: 25,
+          width: 25
+        },
+        annotationImage: {
+          source: { uri: 'https://cldup.com/CnRLZem9k9.png' },
+          height: 25,
+          width: 25
+        },
+        id: 'marker1'
+      }, {
+        coordinates: [40.714541341726175, -74.00579452514648],
+        type: 'point',
+        title: 'Important!',
+        subtitle: 'Neat, this is a custom annotation image',
+        annotationImage: {
+          source: { uri: 'https://cldup.com/7NLZklp8zS.png' },
+          height: 25,
+          width: 25
+        },
+        id: 'marker2'
+      }, {
+        coordinates: [[40.76572150042782, -73.99429321289062], [40.743485405490695, -74.00218963623047], [40.728266950429735, -74.00218963623047], [40.728266950429735, -73.99154663085938], [40.73633186448861, -73.98983001708984], [40.74465591168391, -73.98914337158203], [40.749337730454826, -73.9870834350586]],
+        type: 'polyline',
+        strokeColor: '#00FB00',
+        strokeWidth: 4,
+        strokeAlpha: 0.5,
+        id: 'foobar'
+      }, {
+        coordinates: [[40.749857912194386, -73.96820068359375], [40.741924698522055, -73.9735221862793], [40.735681504432264, -73.97523880004883], [40.7315190495212, -73.97438049316406], [40.729177554196376, -73.97180557250975], [40.72345355209305, -73.97438049316406], [40.719290332250544, -73.97455215454102], [40.71369559554873, -73.97729873657227], [40.71200407096382, -73.97850036621094], [40.71031250340588, -73.98691177368163], [40.71031250340588, -73.99154663085938]],
+        type: 'polygon',
+        fillAlpha: 1,
+        strokeColor: '#ffffff',
+        fillColor: '#0000ff',
+        id: 'zap'
+      }]
+    };
+
+    _this.render = function () {
+      return _react2.default.createElement(
+        _reactNative.View,
+        { style: styles.container },
+        _react2.default.createElement(_reactNativeMapboxGl.MapView, {
+          ref: function ref(map) {
+            _this._map = map;
+          },
+          style: styles.map,
+          initialCenterCoordinate: _this.state.center,
+          initialZoomLevel: _this.state.zoom,
+          initialDirection: 0,
+          rotateEnabled: true,
+          scrollEnabled: true,
+          zoomEnabled: true,
+          showsUserLocation: false,
+          styleURL: _reactNativeMapboxGl2.default.mapStyles.dark,
+          userTrackingMode: _this.state.userTrackingMode,
+          annotations: _this.state.annotations,
+          annotationsAreImmutable: true,
+          onChangeUserTrackingMode: _this.onChangeUserTrackingMode,
+          onRegionDidChange: _this.onRegionDidChange,
+          onRegionWillChange: _this.onRegionWillChange,
+          onOpenAnnotation: _this.onOpenAnnotation,
+          onRightAnnotationTapped: _this.onRightAnnotationTapped,
+          onUpdateUserLocation: _this.onUpdateUserLocation,
+          onLongPress: _this.onLongPress,
+          onTap: _this.onTap
+        })
+      );
+    };
+
+    return _this;
+  }
+
+  return MapComponent;
+}(_react.Component);
+
+MapComponent.componentName = 'MapComponent';
+exports.default = MapComponent;
+}, 785, null, "@components/general/MapComponent.js");
 __d(/* @lib/analytics.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _reactNativeGoogleAnalyticsBridge = require(781                                   ); // 781 = react-native-google-analytics-bridge
+var _reactNativeGoogleAnalyticsBridge = require(787                                   ); // 787 = react-native-google-analytics-bridge
 
 var _constants = require(504          ); // 504 = @constants/
 
@@ -78059,37 +79035,37 @@ var track = function track(store) {
 };
 
 exports.default = track;
-}, 780, null, "@lib/analytics.js");
+}, 786, null, "@lib/analytics.js");
 __d(/* react-native-google-analytics-bridge/index.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.GoogleTagManager = exports.GoogleAnalyticsSettings = exports.GoogleAnalyticsTracker = undefined;
 
-var _GoogleAnalyticsBackwardsCompability = require(782                                        ); // 782 = ./src/GoogleAnalyticsBackwardsCompability
+var _GoogleAnalyticsBackwardsCompability = require(788                                        ); // 788 = ./src/GoogleAnalyticsBackwardsCompability
 
-var _GoogleAnalyticsTracker = require(786                           ); // 786 = ./src/GoogleAnalyticsTracker
+var _GoogleAnalyticsTracker = require(792                           ); // 792 = ./src/GoogleAnalyticsTracker
 
-var _GoogleAnalyticsSettings = require(785                            ); // 785 = ./src/GoogleAnalyticsSettings
+var _GoogleAnalyticsSettings = require(791                            ); // 791 = ./src/GoogleAnalyticsSettings
 
-var _GoogleTagManager = require(783                     ); // 783 = ./src/GoogleTagManager
+var _GoogleTagManager = require(789                     ); // 789 = ./src/GoogleTagManager
 
-var _NativeBridges = require(784                  ); // 784 = ./src/NativeBridges
+var _NativeBridges = require(790                  ); // 790 = ./src/NativeBridges
 
 exports.GoogleAnalyticsTracker = _GoogleAnalyticsTracker.GoogleAnalyticsTracker;
 exports.GoogleAnalyticsSettings = _GoogleAnalyticsSettings.GoogleAnalyticsSettings;
 exports.GoogleTagManager = _GoogleTagManager.GoogleTagManager;
 exports.default = new _GoogleAnalyticsBackwardsCompability.GoogleAnalyticsBackwardsCompability(_NativeBridges.GoogleAnalyticsBridge ? _NativeBridges.GoogleAnalyticsBridge.nativeTrackerId : null);
-}, 781, null, "react-native-google-analytics-bridge/index.js");
+}, 787, null, "react-native-google-analytics-bridge/index.js");
 __d(/* react-native-google-analytics-bridge/src/GoogleAnalyticsBackwardsCompability.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.GoogleAnalyticsBackwardsCompability = undefined;
 
-var _GoogleTagManager = require(783                 ); // 783 = ./GoogleTagManager
+var _GoogleTagManager = require(789                 ); // 789 = ./GoogleTagManager
 
-var _GoogleAnalyticsSettings = require(785                        ); // 785 = ./GoogleAnalyticsSettings
+var _GoogleAnalyticsSettings = require(791                        ); // 791 = ./GoogleAnalyticsSettings
 
-var _GoogleAnalyticsTracker = require(786                       ); // 786 = ./GoogleAnalyticsTracker
+var _GoogleAnalyticsTracker = require(792                       ); // 792 = ./GoogleAnalyticsTracker
 
 function createNewTracker(trackerId, customDimensionsKeysIndexMap) {
   return trackerId && new _GoogleAnalyticsTracker.GoogleAnalyticsTracker(trackerId, customDimensionsKeysIndexMap);
@@ -78239,13 +79215,13 @@ var GoogleAnalyticsBackwardsCompability = exports.GoogleAnalyticsBackwardsCompab
 }();
 
 GoogleAnalyticsBackwardsCompability.GoogleTagManager = _GoogleTagManager.GoogleTagManager;
-}, 782, null, "react-native-google-analytics-bridge/src/GoogleAnalyticsBackwardsCompability.js");
+}, 788, null, "react-native-google-analytics-bridge/src/GoogleAnalyticsBackwardsCompability.js");
 __d(/* react-native-google-analytics-bridge/src/GoogleTagManager.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.GoogleTagManager = undefined;
 
-var _NativeBridges = require(784              ); // 784 = ./NativeBridges
+var _NativeBridges = require(790              ); // 790 = ./NativeBridges
 
 var GoogleTagManager = exports.GoogleTagManager = function () {
   function GoogleTagManager() {
@@ -78282,7 +79258,7 @@ var GoogleTagManager = exports.GoogleTagManager = function () {
   }]);
   return GoogleTagManager;
 }();
-}, 783, null, "react-native-google-analytics-bridge/src/GoogleTagManager.js");
+}, 789, null, "react-native-google-analytics-bridge/src/GoogleTagManager.js");
 __d(/* react-native-google-analytics-bridge/src/NativeBridges.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -78294,13 +79270,13 @@ var GoogleTagManagerBridge = _reactNative.NativeModules.GoogleTagManagerBridge,
     GoogleAnalyticsBridge = _reactNative.NativeModules.GoogleAnalyticsBridge;
 exports.GoogleTagManagerBridge = GoogleTagManagerBridge;
 exports.GoogleAnalyticsBridge = GoogleAnalyticsBridge;
-}, 784, null, "react-native-google-analytics-bridge/src/NativeBridges.js");
+}, 790, null, "react-native-google-analytics-bridge/src/NativeBridges.js");
 __d(/* react-native-google-analytics-bridge/src/GoogleAnalyticsSettings.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.GoogleAnalyticsSettings = undefined;
 
-var _NativeBridges = require(784              ); // 784 = ./NativeBridges
+var _NativeBridges = require(790              ); // 790 = ./NativeBridges
 
 var GoogleAnalyticsSettings = exports.GoogleAnalyticsSettings = function () {
   function GoogleAnalyticsSettings() {
@@ -78325,13 +79301,13 @@ var GoogleAnalyticsSettings = exports.GoogleAnalyticsSettings = function () {
   }]);
   return GoogleAnalyticsSettings;
 }();
-}, 785, null, "react-native-google-analytics-bridge/src/GoogleAnalyticsSettings.js");
+}, 791, null, "react-native-google-analytics-bridge/src/GoogleAnalyticsSettings.js");
 __d(/* react-native-google-analytics-bridge/src/GoogleAnalyticsTracker.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.GoogleAnalyticsTracker = undefined;
 
-var _NativeBridges = require(784              ); // 784 = ./NativeBridges
+var _NativeBridges = require(790              ); // 790 = ./NativeBridges
 
 function isValidCustomDimension(customDimensionVal) {
   var customDimensionValType = typeof customDimensionVal;
@@ -78480,26 +79456,26 @@ var GoogleAnalyticsTracker = exports.GoogleAnalyticsTracker = function () {
   }]);
   return GoogleAnalyticsTracker;
 }();
-}, 786, null, "react-native-google-analytics-bridge/src/GoogleAnalyticsTracker.js");
+}, 792, null, "react-native-google-analytics-bridge/src/GoogleAnalyticsTracker.js");
 __d(/* @redux/index.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
 var _redux = require(402    ); // 402 = redux
 
-var _reducer = require(788                    ); // 788 = @redux/router/reducer
+var _reducer = require(794                    ); // 794 = @redux/router/reducer
 
 var _reducer2 = babelHelpers.interopRequireDefault(_reducer);
 
-var _reducer3 = require(789                      ); // 789 = @redux/sidemenu/reducer
+var _reducer3 = require(795                      ); // 795 = @redux/sidemenu/reducer
 
 var _reducer4 = babelHelpers.interopRequireDefault(_reducer3);
 
-var _reducer5 = require(790                  ); // 790 = @redux/user/reducer
+var _reducer5 = require(796                  ); // 796 = @redux/user/reducer
 
 var _reducer6 = babelHelpers.interopRequireDefault(_reducer5);
 
-var _reducer7 = require(791                     ); // 791 = @redux/recipes/reducer
+var _reducer7 = require(797                     ); // 797 = @redux/recipes/reducer
 
 var _reducer8 = babelHelpers.interopRequireDefault(_reducer7);
 
@@ -78516,7 +79492,7 @@ var rootReducer = function rootReducer(state, action) {
 };
 
 exports.default = rootReducer;
-}, 787, null, "@redux/index.js");
+}, 793, null, "@redux/index.js");
 __d(/* @redux/router/reducer.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -78542,7 +79518,7 @@ function routerReducer() {
       return state;
   }
 }
-}, 788, null, "@redux/router/reducer.js");
+}, 794, null, "@redux/router/reducer.js");
 __d(/* @redux/sidemenu/reducer.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -78573,7 +79549,7 @@ function sideMenuReducer() {
       return state;
   }
 }
-}, 789, null, "@redux/sidemenu/reducer.js");
+}, 795, null, "@redux/sidemenu/reducer.js");
 __d(/* @redux/user/reducer.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -78593,7 +79569,7 @@ function userReducer() {
       return state;
   }
 }
-}, 790, null, "@redux/user/reducer.js");
+}, 796, null, "@redux/user/reducer.js");
 __d(/* @redux/recipes/reducer.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -78634,7 +79610,7 @@ function recipeReducer() {
       return state;
   }
 }
-}, 791, null, "@redux/recipes/reducer.js");
+}, 797, null, "@redux/recipes/reducer.js");
 ;require(193);
 ;require(0);
 //# sourceMappingURL=index.android.map

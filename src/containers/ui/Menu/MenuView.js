@@ -96,13 +96,13 @@ class Menu extends Component {
 
     this.state = {
       menu: [
-        {
+          {
+              title: 'Map',
+              onPress: () => { this.props.closeSideMenu(); Actions.map(); },
+          },
+          {
           title: 'Services',
           onPress: () => { this.props.closeSideMenu(); Actions.app(); },
-        },
-        {
-          title: 'Example Link',
-          onPress: () => { this.props.closeSideMenu(); Actions.comingSoon(); },
         },
       ],
     };
@@ -155,37 +155,7 @@ class Menu extends Component {
           <View style={[styles.menu]}>{menuItems}</View>
 
           <View style={[styles.menuBottom]}>
-            {this.props.user && this.props.user.name ?
-              <View>
-                <Text
-                  style={[
-                    styles.menuBottom_text,
-                    AppStyles.textCenterAligned,
-                  ]}
-                >
-                  Logged in as:{'\n'}
-                  {this.props.user.name}
-                </Text>
 
-                <Spacer size={10} />
-
-                <View style={[AppStyles.paddingHorizontal, AppStyles.paddingVerticalSml]}>
-                  <Button
-                    small
-                    title={'Log Out'}
-                    onPress={this.logout}
-                  />
-                </View>
-              </View>
-            :
-              <View style={[AppStyles.paddingHorizontal, AppStyles.paddingVerticalSml]}>
-                <Button
-                  small
-                  title={'Log In'}
-                  onPress={this.login}
-                />
-              </View>
-            }
           </View>
         </View>
       </View>

@@ -15,12 +15,19 @@ import { AppStyles, AppSizes } from '@theme/';
 import { TabIcon } from '@ui/';
 import { NavbarMenuButton } from '@containers/ui/NavbarMenuButton/NavbarMenuButtonContainer';
 
+import { MapView } from 'react-native-mapbox-gl';
+
+import { MapExample } from '@components/MapExample';
+
+console.log("ASDFSD" + MapExample);
+
 // Scenes
 import Placeholder from '@components/general/Placeholder';
 import Error from '@components/general/Error';
 import StyleGuide from '@containers/StyleGuideView';
 import Recipes from '@containers/recipes/Browse/BrowseContainer';
 import RecipeView from '@containers/recipes/RecipeView';
+import MapComponent from "../components/general/MapComponent";
 
 const navbarPropsTabs = {
   ...AppConfig.navbarProps,
@@ -68,8 +75,8 @@ const scenes = (
     <Scene
       key={'error'}
       {...navbarPropsTabs}
-      title={'Example Error'}
-      component={Error}
+      title={'Library Map'}
+      component={MapComponent}
       icon={props => TabIcon({ ...props, icon: 'error' })}
       analyticsDesc={'Error: Example Error'}
     />

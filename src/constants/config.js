@@ -9,7 +9,8 @@ import { AppColors, AppStyles, AppSizes } from '@theme/';
 
 export default {
   // App Details
-  appName: 'HampLib',
+    appName: 'Services',
+    mapName: 'HampLib',
 
   // Build Configuration - eg. Debug or Release?
   DEV: __DEV__,

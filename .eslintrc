@@ -12,5 +12,6 @@
     "import/extensions": "off",
     "import/no-unresolved": "off",
     "linebreak-style": ["error", "windows"]
+
   },
 }

@@ -17,8 +17,15 @@ import Drawer from '@containers/ui/DrawerContainer';
 import AppLaunch from '@containers/Launch/LaunchContainer';
 import Placeholder from '@components/general/Placeholder';
 import AppWebView from '@components/general/WebView';
+// import MapExample from '@components/MapExample.js';
+
 // import AuthScenes from './auth';
 import TabsScenes from './tabs';
+
+import Mapbox from 'react-native-mapbox-gl';
+const accessToken = 'pk.eyJ1IjoibHJ2b2xsZSIsImEiOiJjajFpcndxN2swMWJ0MnFvaG1uaWNlOHVkIn0.ptRQFGDH9slee6PowWtXOg';
+Mapbox.setAccessToken(accessToken);
+
 
 /* Routes ==================================================================== */
 export default Actions.create(
@@ -39,6 +46,9 @@ export default Actions.create(
       </Scene>
 
       {/* General */}
+        {/*<Scene key={'map'} {...AppConfig.navbarProps} component={MapExample} title={AppConfig.mapName} hideNavBar={false}>*/}
+
+        {/*</Scene>*/}
       <Scene
         clone
         key={'comingSoon'}
@@ -53,7 +63,7 @@ export default Actions.create(
             title={''}
             clone
             component={AppWebView}
-            url={'x'}
+            url={''}
         />
     </Scene>
   </Scene>,

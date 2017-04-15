@@ -5,5 +5,33 @@
     "room": "Inquiry Center",
     "url": "https://sites.hampshire.edu/knowledgecommons/",
     "recipe_meal": [0]
+  },
+  {
+    "id": 1,
+    "title": "Technology and Digital Tools",
+    "room": "Inquiry Center",
+    "url": "https://sites.hampshire.edu/knowledgecommons/",
+    "recipe_meal": [0]
+  },
+  {
+    "id": 2,
+    "title": "Library Research",
+    "room": "Inquiry Center & InfoBar",
+    "url": "https://sites.hampshire.edu/knowledgecommons/",
+    "recipe_meal": [0]
+  },
+  {
+    "id": 3,
+    "title": "Writing Help",
+    "room": "2nd Floor Library Training Room",
+    "url": "https://www.hampshire.edu/writing-center/the-writing-center",
+    "recipe_meal": [0]
+  },
+  {
+    "id": 4,
+    "title": "Transformative Speaking Peer Mentors",
+    "room": "Hill Urbina",
+    "url": "https://www.hampshire.edu/academics/transformative-speaking-program",
+    "recipe_meal": [0]
   }
 ]

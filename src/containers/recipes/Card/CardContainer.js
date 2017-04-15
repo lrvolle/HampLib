@@ -71,7 +71,7 @@ class RecipeCard extends Component {
     */
   onPressCard = () => {
     if (this.props.recipe.id === 0){
-        Actions.webView({url: this.props.url});
+        Actions.webView({url: this.props.recipe.url, title: this.props.recipe.title});
     }
   }
 
@@ -134,7 +134,6 @@ class RecipeCard extends Component {
   render = () => {
     const { recipe } = this.state;
     const { user } = this.props;
-    console.log("RRRR" + recipe);
     return (
       <RecipeCardRender
         title={recipe.title}
