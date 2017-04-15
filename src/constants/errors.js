@@ -12,6 +12,6 @@ export default {
   invalidJson: 'Response returned is not valid JSON',
 
   // Recipes
-  recipe404: 'No recipes found',
-  missingMealId: 'Missing meal definition',
+  recipe404: 'No service found',
+  missingMealId: 'Missing service definition',
 };

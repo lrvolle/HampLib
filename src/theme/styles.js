@@ -226,6 +226,7 @@ export default {
     borderBottomWidth: 0,
   },
   navbarTitle: {
+    textAlign: 'center',
     color: '#ffffff',
     fontWeight: 'bold',
     fontFamily: Fonts.base.family,

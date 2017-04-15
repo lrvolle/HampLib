@@ -5,25 +5,23 @@
  * https://github.com/mcnamee/react-native-starter-app
  */
 
-import AppAPI from '@lib/api';
+import meals from '@jsondata/recipe_meal.json';
 
 /**
-  * Get Meals
-  */
+ * Get Meals
+ */
 export function getMeals() {
-  return dispatch =>
-    AppAPI.meals.get()
-      .then((res) => {
-        dispatch({
-          type: 'MEALS_REPLACE',
-          data: res,
-        });
-      });
+  return function (dispatch) {
+    return dispatch({
+      type: 'MEALS_REPLACE',
+      data: meals,
+    });
+  };
 }
 
 /**
-  * Reset Meals
-  */
+ * Reset Meals
+ */
 export function reset() {
   return {
     type: 'MEALS_RESET',

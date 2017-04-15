@@ -13,6 +13,7 @@ import { connect } from 'react-redux';
 // Consts and Libs
 import AppAPI from '@lib/api';
 import { ErrorMessages } from '@constants/';
+import recipedata from '@jsondata/recipes.json';
 
 // Components
 import Error from '@components/general/Error';
@@ -63,22 +64,11 @@ class MealListing extends Component {
       });
     }
 
-    return AppAPI.recipes.get({ recipe_meal: meal })
-      .then((res) => {
-        this.setState({
-          recipes: res,
-          loading: false,
-          error: null,
-        });
-      }).catch((err) => {
-        const error = AppAPI.handleError(err);
-
-        this.setState({
-          recipes: [],
-          error,
-          loading: false,
-        });
-      });
+    return this.setState({
+      recipes: recipedata.filter(recipe => recipe.recipe_meal.includes(parseInt(meal))),
+      loading: false,
+      error: null,
+    });
   }
 
   render = () => {

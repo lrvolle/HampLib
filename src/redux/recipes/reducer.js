@@ -22,9 +22,6 @@ export default function recipeReducer(state = initialState, action) {
         meals = action.data.map(item => ({
           id: item.id,
           name: AppUtil.htmlEntitiesDecode(item.name),
-          slug: AppUtil.htmlEntitiesDecode(item.slug),
-          description: AppUtil.htmlEntitiesDecode(item.description),
-          count: item.count,
         }));
       }
 

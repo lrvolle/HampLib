@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 /**
  * Individual Recipe Card Container
  *
@@ -35,9 +36,9 @@ class RecipeCard extends Component {
   static propTypes = {
     recipe: PropTypes.shape({
       id: PropTypes.number,
-      title: PropTypes.shape({
-        rendered: PropTypes.string,
-      }),
+      title: PropTypes.string,
+      room: PropTypes.string,
+      url: PropTypes.string,
     }).isRequired,
     updateFavourites: PropTypes.func.isRequired,
     user: PropTypes.shape({
@@ -54,16 +55,14 @@ class RecipeCard extends Component {
   constructor(props) {
     super(props);
 
-    const recipe = this.parseRecipeData(props.recipe);
-    this.state = {
-      recipe,
-    };
+    const recipe = props.recipe;
+    this.state = {recipe,};
   }
 
   componentWillReceiveProps(props) {
     if (props.recipe) {
-      const recipe = this.parseRecipeData(props.recipe);
-      this.setState({ recipe });
+      const recipe = props.recipe;
+      this.setState(recipe);
     }
   }
 
@@ -71,10 +70,9 @@ class RecipeCard extends Component {
     * On Press of Card
     */
   onPressCard = () => {
-    Actions.recipeView({
-      title: this.props.recipe.title.rendered,
-      recipe: this.props.recipe,
-    });
+    if (this.props.recipe.id === 0){
+        Actions.webView({url: this.props.url});
+    }
   }
 
   /**
@@ -106,36 +104,6 @@ class RecipeCard extends Component {
     }
   }
 
-  /**
-    * Data from API is a bit messy - clean it up here
-    */
-  parseRecipeData = (data) => {
-    const recipe = data;
-    const { title, content } = data;
-    const featuredImg = data.better_featured_image;
-    title.rendered = AppUtil.htmlEntitiesDecode(title.rendered);
-
-    // Produce a summary
-    content.rendered = AppUtil.htmlEntitiesDecode(content.rendered);
-    content.rendered = AppUtil.stripTags(content.rendered);
-    const summary = AppUtil.limitChars(content.rendered, 60);
-
-    // Is there a better way to test this?
-    recipe.featured_image = (
-      featuredImg &&
-      featuredImg.media_details &&
-      featuredImg.media_details.sizes &&
-      featuredImg.media_details.sizes.medium &&
-      featuredImg.media_details.sizes.medium.source_url
-    ) ?
-      featuredImg.media_details.sizes.medium.source_url : '';
-
-    return {
-      image: recipe.featured_image,
-      title: title.rendered,
-      content: summary,
-    };
-  }
 
   /**
     * Check in Redux to find if this Recipe ID is a Favourite
@@ -166,12 +134,12 @@ class RecipeCard extends Component {
   render = () => {
     const { recipe } = this.state;
     const { user } = this.props;
-
+    console.log("RRRR" + recipe);
     return (
       <RecipeCardRender
-        image={recipe.image}
         title={recipe.title}
-        content={recipe.content}
+        room={recipe.room}
+        url={recipe.url}
         onPress={this.onPressCard}
         onPressFavourite={(user && user.id) ? this.onPressFavourite : null}
         isFavourite={(user && user.id && this.isFavourite()) && true}

@@ -104,16 +104,8 @@ class RecipeTabs extends Component {
   fetchData = () => {
     // Get meals to populate tabs
     if (!this.props.meals || this.props.meals.length < 1) {
-      this.props.getMeals()
-        .then(() => {
-          this.setTabs();
-        }).catch((err) => {
-          const error = AppAPI.handleError(err);
-          this.setState({
-            loading: false,
-            error,
-          });
-        });
+      this.props.meals = this.props.getMeals();
+      this.setTabs();
     } else {
       this.setTabs();
     }

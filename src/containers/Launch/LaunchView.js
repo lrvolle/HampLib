@@ -40,11 +40,12 @@ class AppLaunch extends Component {
     StatusBar.setHidden(false, true);
 
     // Try to authenticate based on existing token
-    this.props.login()
-      // Logged in, show index screen
-      .then(() => Actions.app({ type: 'reset' }))
-      // Not Logged in, show Login screen
-      .catch(() => Actions.authenticate({ type: 'reset' }));
+    // this.props.login()
+    //   // Logged in, show index screen
+    //   .then(() => Actions.app({ type: 'reset' }))
+    //   // Not Logged in, show Login screen
+    //   .catch(() => Actions.authenticate({ type: 'reset' }));
+    Actions.app({ type: 'reset' });
   }
 
   render = () => (
